@@ -59,12 +59,8 @@ st.set_page_config(
 # ─────────────────────────────────────────────────────────────────────────────
 if "history" not in st.session_state:
     st.session_state.history = []
-if "hf_token" not in st.session_state:
-    # Works on both Streamlit Cloud (st.secrets) and locally (.env)
-    try:
-        st.session_state.hf_token = st.secrets["HF_TOKEN"]
-    except Exception:
-        st.session_state.hf_token = os.environ.get("HF_TOKEN", "")
+# Remove sidebar token logic: always use env var
+st.session_state.hf_token = os.environ.get("HF_TOKEN", "")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # CONFIG  — change only this line to swap Llama variants
@@ -160,7 +156,7 @@ def call_llama(system: str, user: str, max_tokens: int = 500) -> str:
         return "❌ Run: pip install openai"
     token = st.session_state.hf_token
     if not token:
-        return "⚠️ No HF token. Add it in the sidebar."
+        return "❌ Service unavailable, contact admin."
     try:
         client = OpenAI(base_url=HF_ROUTER_BASE, api_key=token)
         resp   = client.chat.completions.create(
@@ -562,9 +558,10 @@ def main():
             st.warning("⚠️ Please provide at least 30 characters of content.")
             return
 
-        if not st.session_state.hf_token:
-            st.error("❌ Add your HuggingFace token in the sidebar first.")
-            return
+        # Remove sidebar token check
+        # if not st.session_state.hf_token:
+        #     st.error("❌ Add your HuggingFace token in the sidebar first.")
+        #     return
 
         # ── STEP 1: Extract claims ─────────────────────────────────────────
         st.markdown("## Results")
