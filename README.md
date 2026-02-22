@@ -4,7 +4,8 @@ AI-powered fact-checking app that verifies news, articles, and any text against 
 
 
 🚀 Live Demo
-Deploy your own → share.streamlit.io
+https://batch-7-aicte-truthlens-ai-h7bzrcwvdowfn8u6noqesn.streamlit.app/
+
 
 ✨ What It Does
 Paste any text or upload a PDF and TruthLens will:
