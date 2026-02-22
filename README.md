@@ -43,11 +43,12 @@ truthlens/
 
 ⚙️ Setup & Run Locally
 1. Clone the repo
-bashgit clone https://github.com/yourusername/truthlens.git
-cd truthlens
-2. Install dependencies
+bashgit clonenhttps://github.com/GitYRABC/batch-7-aicte-TruthLens-Ai
+
+3. Install dependencies
 bashpip install -r requirements.txt
-3. Get a HuggingFace token
+
+5. Get a HuggingFace token
 
 Go to huggingface.co → Settings → Access Tokens
 Create a new token with "Make calls to Inference Providers" permission
@@ -60,7 +61,8 @@ Click Accept on the license gate
 
 5. Create your .env file
 HF_TOKEN=hf_xxxxxxxxxxxxxxxx
-6. Run the app
+
+7. Run the app
 bashstreamlit run truthlens_app.py
 Open http://localhost:8501 in your browser.
 
