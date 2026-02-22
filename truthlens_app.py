@@ -60,7 +60,11 @@ st.set_page_config(
 if "history" not in st.session_state:
     st.session_state.history = []
 if "hf_token" not in st.session_state:
-    st.session_state.hf_token = os.environ.get("HF_TOKEN", "")
+    # Works on both Streamlit Cloud (st.secrets) and locally (.env)
+    try:
+        st.session_state.hf_token = st.secrets["HF_TOKEN"]
+    except Exception:
+        st.session_state.hf_token = os.environ.get("HF_TOKEN", "")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # CONFIG  — change only this line to swap Llama variants
